@@ -1,0 +1,50 @@
+.bannerParentDiv {
+  padding-top: 5em;
+}
+
+.banner{
+  padding-top: 2em;
+}
+
+
+.bannerParentDiv .bannerChildDiv {
+  
+}
+.menuBar{
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.bannerParentDiv .bannerChildDiv .menuBar {
+  display: flex;
+  padding: 10px 16px 10px 16px;
+}
+
+.bannerParentDiv .bannerChildDiv .menuBar span {
+}
+
+.bannerParentDiv .bannerChildDiv .menuBar .categoryMenu span {
+  margin-right: 16px;
+  font-weight: bolder;
+}
+
+.bannerParentDiv .bannerChildDiv .menuBar .otherQuickOptions {
+}
+.bannerParentDiv .bannerChildDiv .menuBar .otherQuickOptions span {
+  padding: 10px;
+}
+
+.bannerChildDiv .banner {
+  position: relative;
+  width: 100%;
+}
+.bannerChildDiv .banner img{
+  width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  .otherQuickOptions {
+    display: none;
+  }
+  .bannerChildDiv .banner {
+    position: relative;
+  }
+}
