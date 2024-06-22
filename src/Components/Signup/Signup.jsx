@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Logo from '../../olx-logo.png';
 import './Signup.css';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile  } from 'firebase/auth';
 import { FirebaseContext } from '../../store/Context';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/config';
@@ -21,21 +21,24 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       const user = userCredential.user;
-
+      await updateProfile(user, { displayName: username });
       const uid = uuidv4();
+      console.log(username);
       await addDoc(collection(db, 'users'), {
         id: uid,
-        username,
-        phone,
+        username : username,
+        phone : phone,
         email: user.email
+        // displayName: user.displayName
       });
 
       navigate('/login');
     } catch (error) {
       console.error('Error signing up: ', error);
       alert('Error signing up: ' + error.message);
+      navigate('/signup')
     }
   };
 

@@ -1,8 +1,10 @@
-import { createContext, useState } from 'react';
-import { firebaseApp, auth, db, storage } from '../firebase/config';
+import { createContext, useState } from "react";
+import { firebaseApp, auth, db, storage } from "../firebase/config";
 
-export const FirebaseContext = createContext('null');
-export const AuthContext = createContext('null');
+// export const FirebaseContext = createContext("null");
+// export const AuthContext = createContext("null");
+export const FirebaseContext = createContext({ firebaseApp, auth, db, storage });
+export const AuthContext = createContext({ user: null, setUser: () => {} }); // Adjusted default value
 
 export default function Context({ children }) {
   const [user, setUser] = useState(null);
@@ -17,6 +19,3 @@ export default function Context({ children }) {
     // </UserContext.Provider>
   );
 }
-
-
-  

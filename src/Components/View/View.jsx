@@ -13,19 +13,21 @@ function View() {
  const  [searchParams, setSearchParams]  =  useSearchParams()
 const prodcutId =  searchParams.get("id")
   useEffect(() => {
-    console.log("h", prodcutId);
+
+        // const {userId} = postDetails
+
     if (prodcutId) {
-      const q = query(collection(db, "products"), where("name", "==", prodcutId));
+      const q = query(collection(db, "users"), where("name", "==", prodcutId));
 
       getDocs(q).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log("Document data:", doc.data());
           setUserDetails(doc.data());
 
         });
       });
     }
   }, [postDetails]);
+  console.log(userDetails)
   return (
     <div className="viewParentDiv">
       <div className="imageShowDiv">

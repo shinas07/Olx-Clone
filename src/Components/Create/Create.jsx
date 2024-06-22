@@ -14,6 +14,7 @@ const Create = () => {
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
+  const [size, setSize] = useState('')
 
   const handleSubmit = async () => {
     try {
@@ -22,19 +23,13 @@ const Create = () => {
       }
       
 
-      // if (!user || !user.uid) {
-      //   throw new Error("User is not authenticated or uid is missing.");
-      // }
 
-      // console.log(image);
       const storageRef = ref(storage, `images/${image.name}`);
       const uploadResult = await uploadBytes(storageRef, image);
 
       // Get the image download URL
       const imageUrl = await getDownloadURL(uploadResult.ref);
-      // console.log('Image URL:', imageUrl);
 
-      // Save product data to Firestore
       const docRef = await addDoc(collection(db, 'products'), {
         name,
         category,
@@ -74,14 +69,7 @@ const Create = () => {
         <br />
         <label htmlFor="fname">Category</label>
         <br />
-        <input
-          className="input"
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          id="fname"
-          name="category"
-        />
+        <input className="input" type="text" value={category} onChange={(e) => setCategory(e.target.value)} id="fname" name="category" />
         <br />
         <label htmlFor="fname">Price</label>
         <br />
